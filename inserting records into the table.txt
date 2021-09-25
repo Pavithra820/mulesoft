@@ -1,0 +1,52 @@
+import java.sql.Connection;  
+import java.sql.DriverManager;  
+import java.sql.PreparedStatement;  
+import java.sql.SQLException;  
+   
+public class InsertRecords {  
+   
+    private Connection connect() {  
+     
+        String url = "jdbc:sqlite:C://sqlite/Movies.db";  
+        Connection conn = null;  
+        try {  
+            conn = DriverManager.getConnection(url);  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+        return conn;  
+    }  
+   
+  
+    public void insert(String name, double capacity) {  
+        String sql = "INSERT INTO Movies(movie name,lead actor name,actress name,year of release,director name) VALUES(?,?)";  
+   
+        try{  
+            Connection conn = this.connect();  
+            PreparedStatement pstmt = conn.prepareStatement(sql);  
+            pstmt.setString(1, movie name);  
+            pstmt.setString(2, lead actor name);  
+            pstmt.setString(3,actress name);  
+            pstmt.setInt(4, year of release);  
+            pstmt.setString(5, director name);  
+            pstmt.executeUpdate();  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+    }  
+   
+    public static void main(String[] args) {  
+   
+        InsertRecords app = new InsertRecords(); 
+        app.insert(1,'sky is pink', 'farhan akthar', 'priyanka chopra',2019,'shonali bose');
+        app.insert(2,'padmavaat', 'ranveer singh', 'deepika padkone',2018,'sanjay leela');
+        app.insert (3,'mary kom', 'darshan kumar', 'priyanka chopra',2014,'omung kumar');
+        app.insert(4,'chak de india', 'shah ru khan', 'vidya maldev',2007,'shimit amin');
+        app.insert(5,'dangal', 'amir khan', 'fatima sana',2016,'nitesh tiwari');
+         app.insert(6,'sanju', 'ranbir kapoor', 'manisha koirala',2018,'rajkumar hirani');
+         app.insert(7,'raazi', 'vicky kaushal', 'alia bhatt',2020,'meghna gulzar');
+         app.insert(8,'sheershah', 'sidharth malhotra', 'kiara advani',2021,'vishnu vardhan');
+       
+    }  
+   
+}  
