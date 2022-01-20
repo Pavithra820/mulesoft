@@ -1,0 +1,48 @@
+import java.sql.*;
+import java.sql.DriverManager;
+public class NewClass {
+    public class void main(String args[])
+    {
+        Connection conn=null;
+        Statement stmt=null;
+        
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            System.out.println("Connecting to the database");
+            conn=DriverManager
+                    .getConnection("jdbc:mysql://localhost:3306/My_movies","password");
+            System.out.println("You're now connected to the database");
+            
+            System.out.println("Inserting data");
+            stmt=conn.createStatement();
+            
+            String sql="INSERT INTO Movies " + 
+                    "VALUES(\"SKY IS PINK\",\"FARHAN AKTHAR\",\"PRIYANKA CHOPRA\",2020,\"SHONALI BOSE\"),(\"PADMAVAAT\",\"RANVEER SINGH",\"DEEPIKA PADKONE\",2015,\"SANJAY LEELA\"),(\"MARY KOM\",\"DARSHAN KUMAR\",\"PRIYANKA CHOPRA\",2017,\"OMUNG KUMAR\"),(\"CHAK DE INDIA\",\"SHAH RU KHAN\",\"VIDYA MALDEV\",2007,\"SHIMIT AMIN\"),(\"DANGAL\",\"AMIR KHAN\",\"FATIMA SANA\",2016,\"NITESH TIWARI\"),(\"SANJU\",\"RANBIR KAPOOR\",\"MANISHA KOIRALA\",2018,\"RAJKUMAR HIRANI\"),(\"RAAZI\",\"VICKY KAUSHAL\",\"ALIA BHATT\",2020,\"MEGHNA GULZAR\"),(\"SHEERSHAH\",\"SIDHARTH MALHOTRA\",\"KIARA ADVANI\",2021,\"VISHNU VARDHAN\");";
+            stmt.executeUpdate(sql);
+            System.out.println("Data inserted");
+        }
+        catch(SQLException se)
+        {
+            se.printStackTrace();
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }finally{
+            try{
+                if(stmt!=null)
+                    conn.close();
+            }catch(SQLException se){
+                
+            }
+            try{
+                if(conn!=null)
+                    conn.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            } 
+        }
+    }
+    
+}
+
